@@ -128,6 +128,7 @@ def find_candidate_lines(ocr_json,ans_json):
 data = []
 ocr_files = glob.glob(args.ocr_folder+"/*")
 ocr_files = [x.split('.')[0] for x in ocr_files]
+print(len(ocr_files))
 dict_img_qa = json.load(open(args.train_v1_json))
 found = 0
 nf = []
@@ -242,20 +243,20 @@ new_train = []
 
 for i in tqdm(data):
     img_id = i['image_id']
-    if val_count<=1000:
-        new_val.append(i)
-        val_count+=1
-    else:
-        new_train.append(i)
+    # if val_count<=1000:
+    #     new_val.append(i)
+    #     val_count+=1
+    # else:
+    new_train.append(i)
         
         
-print("LEN VAL",len(new_val))
+# print("LEN VAL",len(new_val))
 print("LEN TRAIN",len(new_train))
 
 with open(args.out_train_json, "w") as fp:
     json.dump(new_train,fp)
-with open(args.out_val_json, "w") as fp:
-    json.dump(new_val,fp)
+# with open(args.out_val_json, "w") as fp:
+#     json.dump(new_val,fp)
 
 print("Answers found",found)
 print("Answers not found",not_found)

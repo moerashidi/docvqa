@@ -2,13 +2,12 @@ import torch
 from torch import nn
 from torch.nn import CrossEntropyLoss, MSELoss
 from transformers import BertPreTrainedModel
-from transformers.modeling_bert import (
+from transformers.models.bert.modeling_bert import (
     BertEncoder,
     BertPooler,
-    BertLayerNorm,
 )
 
-
+BertLayerNorm = torch.nn.LayerNorm
 class LayoutLMEmbeddings(nn.Module):
     """Construct the embeddings from word, position and token_type embeddings.
     """
